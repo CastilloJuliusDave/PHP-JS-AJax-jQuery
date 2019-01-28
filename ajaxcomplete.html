@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+ajaxcomplete
+</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#driver").click(function(){
+			$("#stage1").load('result.html');
+
+			});
+
+		$(document).ajaxComplete(function(){
+			$("#stage2").html("<h1>Request Complete. </h1>");
+
+			});
+	});
+</script>
+</head>
+<body>
+<p>CLick this button to load url</p>
+<div id="stage1" style="background-color: #cc0">Stage-1</div>
+<div id="stage2" style="background-color: #cc0">Stage-2</div>
+<button type="button" id="driver">Load Data URL</button>
+</body>
+</html>

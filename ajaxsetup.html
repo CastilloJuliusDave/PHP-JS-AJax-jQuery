@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		//systax method for jquery ajaxsetup
+		// $.ajaxSetup( options )
+		$(document).ready(function(){
+			$("#driver").click(function(event){
+				// do global setting
+				//result.html
+				//ajaxsetup for realtime data
+				$.ajaxSetup({
+					url:'result.html',
+				});
+				
+				$.ajax({
+					url:'result.html',
+					success:function(data){
+						$("#stage").html(data);
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<p>pindots na</p>
+	<div id="stage" style="background-color: red">meow</div>
+	<input type="button" id="driver" value="load data url">
+</body>
+</html>

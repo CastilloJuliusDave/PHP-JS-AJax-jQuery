@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+	<script>
+		//for jQuery ajax
+		//$.get (url, [callback])
+		$(document).ready(function(){
+			//result.js
+			$("#driver").click(function(event){
+				//result.[may use any extension .html .json .php]
+				$("#stage").load('result.json');
+			});
+		});
+	</script>
+</head>
+<body>
+	<p>push button</p>
+	<div id="stage" style="background-color: #cc0">meow</div>
+	<input type="button" id="driver" value="load data url">
+</body>
+</html>

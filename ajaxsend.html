@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+ajaxcomplete
+</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		/*global variable*/
+		var count = 0;
+
+		//result.html
+		$("#driver").click(function(event){
+			$('#stage0').load('result.html');
+		});
+
+		/*gets called when request starts*/
+		$(document).ajaxStart(function(){
+			count++;
+			$("#stage1").html("<h1>Starts, Count :" +count+" <h1>")
+		})
+		/*gets called when request is sent*/
+		$(document).ajaxSend(function(event, req, set){
+			count++;
+			$("#stage2").html("<h1>Starts, Count :" +count+" <h1>")
+			$("#stage2").append("<h1>url:" +set.url+" <h1>") //set.url gets the parameter on .load()
+		})
+
+		/*gets called when request is complete*/
+		$(document).ajaxComplete(function(event, requets,set){
+			count++;
+			$("#stage3").html("<h1>Complete, Count :" +count+" <h1>")
+		})
+	});
+</script>
+</head>
+<body>
+<p>CLick this button to load url</p>
+<div id="stage0" style="background-color: rgba(255, 0, 0, 0.2);">Stage-0</div>
+<div id="stage1" style="background-color: rgba(255, 0, 0, 0.4);">Stage-1</div>
+<div id="stage2" style="background-color: rgba(255, 0, 0, 0.6);">Stage-2</div>
+<div id="stage3" style="background-color: rgba(255, 0, 0, 0.8);">Stage-3</div>
+<button type="button" id="driver">Load Data URL</button>
+</body>
+</html>
