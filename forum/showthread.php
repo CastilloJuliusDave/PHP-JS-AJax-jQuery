@@ -89,14 +89,13 @@
 				  	<div class="col-lg-12 col-md-12 col-sm-12 LatestChapterDiscussion p-3">
 						<?php
 
+						//get thread id from show forumdisplay
 						if (isset($_GET["targetname"])) {
 							$id = $_GET["id"];
-							$where = array("category_id"=>$id,);
-							$row = $obj->fetch_data("thread",$where);
+							$where = array("id"=>$id,);
+							$row = $obj->select_data("thread",$where);
 
-								foreach ($row as $thread) {
-
-									$category = $thread['user_account_id'];
+									$category = $row['user_account_id'];
 									$where = array("id"=>$category,);
 									$row1 = $obj->select_data("user_account", $where);
 
@@ -114,25 +113,38 @@
 				            <div class="panel panel-info">
 				            	<a class="float-right" href="newthread.php"><input class="btn btn-primary float-right" onclick="" name="New_thread" value="Create New Thread"></a>
 					            <div class="panel-heading">
-					                <h4 class="panel-title"><?php echo $thread['created'];?></h4>
+					                <h4 class="panel-title"><?php echo $row['created'];?></h4>
 					            </div>
 				                <div class="panel-body">
 									<div class="card">
 										<div id="container">
 											<div class="form-row p-1">
 									  			<div class="col-lg-2 col-md-2 col-sm-2 LatestChapterDiscussion" style="background-color: ghostwhite;">
-													<img id="profileLegend" src="assets/images/icons/icon_forum.png">
+													
+													<ul class="list-unstyled text-center">
+														<li id="thread_subject">
+															<h4><?php echo $row1['user_name'];?></h4>
+														</li>
+														<li id="thread_content">
+															<img id="profileLegend" src="assets/images/icons/icon_forum.png">
+														</li>
+														<li id="thread_content">
+															<h4>Joined Date: <?php echo $row1['created'];?></h4>
+														</li>
+													</ul>
+
 										  		</div>
 										  		<div class="col-lg-10 col-md-10 col-sm-10 LatestChapterDiscussion" style="background-color: ghostwhite;">
 													
 													<ul class="list-unstyled">
 														<li id="thread_subject">
-															<h4><?php echo $thread['subject'];?></h4>
+															<h4><?php echo $row['subject'];?></h4>
 														</li>
 														<li id="thread_content">
-															<div><?php echo $row2['content'];?></div>
+															<div><?php echo $row['content'];?></div>
 														</li>
 													</ul>
+
 										  		</div>
 											</div>
 										</div>
@@ -143,7 +155,6 @@
 				        <br>
 					                
 						<?php 
-								}
 							}
 
 							 ?>

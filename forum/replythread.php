@@ -6,7 +6,7 @@
 	$user = new Main();
 
 	if (isset($_SESSION['id'])) {
-		header("location:home.php");
+		header("location:index.php");
 	}
 ?>
 
@@ -145,7 +145,6 @@
 									</div>
 								</div>
 			                </div>
-
 			        	<?php 
 							}
 
@@ -274,10 +273,5 @@ var quillFull = new Quill('#document-full', {
 	</script>
 
 <?php
-	include "included/footer.php";
+	include "included/footer.php"
 ?>
-
-
-
-
-
