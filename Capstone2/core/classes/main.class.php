@@ -161,12 +161,15 @@ $obj = new Main();
 
 if (isset($_POST['submit_registration'])) {
 	$myarray = array(
-		"user_name"=>$_POST['username'],
-		"user_password"=>md5($_POST['password']),
 		"first_name"=>$_POST['firstname'],
 		"last_name"=>$_POST['lastname'],
-		"email"=>$_POST['email'],
+		"middle_name"=>$_POST['middlename'],
 		"birth_day"=>$_POST['bday'],
+		"address"=>$_POST['address'],
+		"phone_main"=>$_POST['phonemain'],
+		"phone_home"=>$_POST['phonehome'],
+		"email"=>$_POST['email'],
+
 		"gender"=>$_POST['gender'],
 		"status"=>"Active"
 	);
