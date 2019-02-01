@@ -1,22 +1,5 @@
 <?php
-
 	include 'core/init.php';
-
-	if (isset($_REQUEST['submit_login'])) {
-		extract($_REQUEST);
-		$login = $user->check_login($emailoruser,$password);
-		if ($login) {
-			//if register success
-			header("location:home.php");
-		}else{
-			//failed register
-			echo"Incorrect email or password";
-		}
-	}
-
-	if (isset($_SESSION['id'])) {
-		header("location:index.php");
-	}
 
 ?>
 
@@ -35,41 +18,27 @@
 </script>
 
 
-<body>
-<!-- ForumMainContent -->
-<section id="LoginContent">
-	<div class="container login_container section-header">
-		<div class="row mt-3">
-			<div class="col-lg-4 p-1">
-				<?php
-					include 'includes/login.php';
-				?>
+	<body>
+	<!-- ForumMainContent -->
+	<section id="LoginContent">
+		<div class="container login_container section-header">
+			<div class="row mt-3">
+
+					<?php
+						include 'includes/login.form.php';
+					?>
 			</div>
-			<div class="col-lg-8 p-1">
-				<?php
-					include 'includes/register.php';
-				?>
-			</div>
-
-
-
-
-
 		</div>
-	</div>
-</section>
+	</section>
 
-<script>
-	
+	  <?php
+		include "includes/footer.php";
+	?> 
 
-</script>
+	</body>
 
-</body>
 
-<?php
-	include "includes/footer.php"
-?>
-
+</html>
 
 
 

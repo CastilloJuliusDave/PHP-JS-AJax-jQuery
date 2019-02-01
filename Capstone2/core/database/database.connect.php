@@ -12,4 +12,20 @@ class Database{
 }
 
 $obj = new Database();
+
 ?>
+
+<!-- <?php
+$servername   = "localhost";
+$database = "attendance";
+$username = "admin";
+$password = "root";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+// Check connection
+if ($conn->connect_error) {
+   die("Connection failed: " . $conn->connect_error);
+}
+  echo "Connected successfully";
+?> -->

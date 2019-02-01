@@ -286,9 +286,8 @@
 
 </body>
 	<script src="assets/css/js/jquery-3.3.1.min.js"></script>
+
 	<script>
-
-
 	$(document).ready(function() {
 		
 		$.validator.setDefaults({
@@ -320,59 +319,56 @@
 		$("#signupForm").validate({
 			rules: {
 				firstname: "required",
-				lastname: "required",
-				username: {
+				lastname: {
 					required: true,
 					minlength: 3
 				},
-				password: {
-					required: true,
-					minlength: 5,
-				},
-				password1: {
-					required: true,
-					minlength: 5,
-					equalTo: "#password"
-				},
 				email: {
 					required: true,
-					email: true,
+					email: true
 				},
 				confirm_email: {
 					required: true,
 					email: true,
 					equalTo: "#email"
 				},
-				bday: {
+				mainphone: {
 					required: true,
+					minlength: 11
+				},
+				homephone: {
+					required: true,
+					minlength: 11
+				},
+				bday: {
+					required: true
+				},
+				address: {
+					required: true
 				},
 				gender: {
-					required: true,
+					required: true
 				},
-				agree: "required"
 			},
 			messages: {
-				firstname: "Please enter your firstname",
-				lastname: "Please enter your lastname",
-				username: {
-					required: "Please enter a username",
-					minlength: "Your username must consist of at least 3 characters"
-				},
-				password: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long"
-				},
-				password1: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long",
-					equalTo: "Please enter the same password"
-				},
-				email: "Please enter a valid email address",
+				firstname: "Please enter your First Name",
+				lastname: "Please enter your Last Name",
+				email: "Please enter a valid eEmail Address",
 				confirm_email:{
 
 					equalTo: "Please enter the same email"
 				},
-				agree: "Please accept our policy",
+				mainphone: {
+					required: "Please provide a Main Phone Number",
+					minlength: "Your Phone number must be 11 Numbers long"
+				},
+				homephone: {
+					required: "Please provide a Main Phone Number",
+					minlength: "Your Phone number must be 11 Numbers long",
+				},
+				bday: "Please enter your Birth Date",
+				bday: "Please enter your Address",
+				gender: "Please choose your Gender",
 			}
 		});
 
@@ -387,6 +383,7 @@
 
 	});
 	</script>
+	
 
 <?php
 	include "included/footer.php"

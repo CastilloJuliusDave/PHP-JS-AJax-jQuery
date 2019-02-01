@@ -1,6 +1,16 @@
 <?php
 
-class Main EXTENDS Database{
+
+class Main {
+
+	public $con; 
+	public function __construct(){
+		$this->con = mysqli_connect("localhost", "admin", "root", "attendance");
+				if (mysqli_connect_errno()) {
+			echo"Error: could not connect to database.";
+			exit;
+		}
+	}
 
 	//"insert info from table (, ,) values ('data','data')"
 	public function insert_data($table,$fields){
@@ -10,6 +20,7 @@ class Main EXTENDS Database{
 		$sql .=" ('".implode("','", array_values($fields)). "')";
 		
 /*		echo $sql;*/
+
 		$query = mysqli_query($this->con,$sql);
 		if($query){
 			return true;
@@ -155,31 +166,58 @@ class Main EXTENDS Database{
 		}
 	}
 
+		//generateID.
+		public function generateID(){
+			$sql = "SELECT max(id) AS temp_id FROM Employee_Master";
+			$result = mysqli_query($this->con,$sql);
+			$user_data = mysqli_fetch_array($result);
+			$unique_id = uniqid();
+			$unique_id = substr( $unique_id, 9 );
+			$temp_ID = $unique_id.($user_data['temp_id'] + 1);
+			return $temp_ID;
+		}
 }
 
 $obj = new Main();
-
+$obj2 = new Main();
 if (isset($_POST['submit_registration'])) {
+	
 	$myarray = array(
+		"employee_id"=>$obj->generateID(),
 		"first_name"=>$_POST['firstname'],
 		"last_name"=>$_POST['lastname'],
 		"middle_name"=>$_POST['middlename'],
 		"birth_day"=>$_POST['bday'],
 		"address"=>$_POST['address'],
-		"phone_main"=>$_POST['phonemain'],
-		"phone_home"=>$_POST['phonehome'],
+		"phone_main"=>$_POST['mainphone'],
+		"phone_home"=>$_POST['homephone'],
 		"email"=>$_POST['email'],
-
 		"gender"=>$_POST['gender'],
-		"status"=>"Active"
+		"status_id"=>"1"
 	);
 
-	if ($obj->insert_data("user_account", $myarray)) {
-	/*	header("location: index.php?msg=You are now Registered!");*/
-		header("location: login.php?msg=Registration Successfull");
+	$temp_pass = md5($_POST['middlename'].substr( $_POST['mainphone'], 7 ));
+
+	$myarray2 = array(
+		"employee_id"=>$myarray['employee_id'],
+		"password"=>$temp_pass,
+		"last_login"=>"",
+		"register_date"=>(new \DateTime())->format('Y-m-d H:i:s'),
+		"user_type_id"=>$_POST['usertype']
+	);
+
+	if ($obj->insert_data("Employee_Master", $myarray)) {
+
+		if ($obj2->insert_data("Employee_Login_Master", $myarray2)) {
+			header("location: registration.php?msg=Registration Successfull");
+		}else{
+			//failed register
+			header("location: registration.php?msg=Login Registration Failed");
+		}
+	
 	}else{
 		//failed register
-		header("location: registration.php?msg=Registration Failed");
+		header("location: registration.php?msg=Employee Registration Failed");
 	}
 }
 
@@ -225,7 +263,6 @@ if (isset($_GET['delete'])) {
 		header("location: index.php?msg=Your request is Accepted");
 	}
 }
-
 
 
 

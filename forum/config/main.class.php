@@ -1,5 +1,5 @@
 <?php
-
+include 'database.connect.php';
 class Main EXTENDS Database{
 
 	//"insert info from table (, ,) values ('data','data')"

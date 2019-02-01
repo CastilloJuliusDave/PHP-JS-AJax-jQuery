@@ -1,7 +1,4 @@
 <?php
-
-	include 'core/init.php';
-
 	if (isset($_REQUEST['submit_login'])) {
 		extract($_REQUEST);
 		$login = $user->check_login($emailoruser,$password);
@@ -13,16 +10,17 @@
 			echo"Incorrect email or password";
 		}
 	}
-
+/*
 	if (isset($_SESSION['id'])) {
-		header("location:home.php");
+		header("location:ad.php");
 	}else{
-		header("location:index.php");
-	}
+		header("location:asdasd.php");
+	}*/
 
 ?>
 
 
+<div class="col-lg-4 p-1">
 	<div class="card login_card m-2 text-white">
 		<div class="card-header login_card-header">
 			<h3>Sign In</h3>
@@ -39,9 +37,6 @@
 					<input class="form-control" type="password" name="password" required="">
 			    </div>
 			    <div class="w-100"><br></div>
-<!-- 					<div class="row align-items-center login_remember">
-					<input name="remember" type="checkbox"><label for="remember">Remember Me</label>
-				</div> -->
 				<div class="form-group">
 					<input class="btn btn-primary float-right" onclick="return(submitlogin())" type="submit" name="submit_login" value="Login">
 				</div>
@@ -53,3 +48,4 @@
 			</div>
 		</div>
 	</div>
+</div>
