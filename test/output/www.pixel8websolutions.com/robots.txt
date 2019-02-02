@@ -1,9 +1,0 @@
-Sitemap: https://www.pixel8websolutions.com/sitemap.xml
-Sitemap: https://www.pixel8websolutions.com/sitemap_index.xml
-Sitemap: https://www.pixel8websolutions.com/post_tag-sitemap.xml
-Sitemap: https://www.pixel8websolutions.com/page-sitemap.xml
-Sitemap: https://www.pixel8websolutions.com/category-sitemap.xml
-
-User-agent: *
-Disallow: /wp-admin/
-Allow: /wp-admin/admin-ajax.php
