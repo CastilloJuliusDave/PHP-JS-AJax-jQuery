@@ -44,3 +44,9 @@ nav > div a.nav-item.nav-link:focus
     border-radius:0;
     transition:background 0.20s linear;
 }
+
+/*to make link inactive in breadcrumb*/
+.inactiveLink {
+   pointer-events: none!important;
+   cursor: default!important;
+}

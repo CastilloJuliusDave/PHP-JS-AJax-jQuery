@@ -39,6 +39,7 @@ class Main {
 		return $array;
 	}
 	//end of fetch
+
 	//start of update
 	public function update_data($table,$where,$fields){
 		$sql = "";
